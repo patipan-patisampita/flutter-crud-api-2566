@@ -46,7 +46,7 @@ class _HomePageState extends State<HomePage> {
         backgroundColor: Colors.purple,
         title: Text(widget.title),
       ),
-      body: ListView.builder(
+      body:_isLoading ? const CircularProgressIndicator(): ListView.builder(
         itemCount: _listdata.length,
         itemBuilder: (context, index) {
           return Card(
