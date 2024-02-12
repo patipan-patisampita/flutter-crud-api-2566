@@ -1,10 +1,7 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_project/views/about.dart';
 import 'package:flutter_project/views/home.dart';
 import 'package:flutter_project/views/profile.dart';
-import 'package:http/http.dart' as http;
 
 class DashboardPage extends StatefulWidget {
   final String title;
@@ -15,31 +12,7 @@ class DashboardPage extends StatefulWidget {
 }
 
 class _DashboardPageState extends State<DashboardPage> {
-  final List _listdata = [];
-  // =============Read Data==============
-  Future<void> ReadData() async {
-    const url = "http://192.168.1.119/crud-api/controllers/readData.php";
-    final res = await http.get(Uri.parse(url));
-    if (res.statusCode == 200) {
-      // debugPrint(res.body);
-      final read = jsonDecode(res.body);
-
-      setState(() {
-        _listdata.add(read);
-        debugPrint(_listdata.toString());
-      });
-    }
-  }
-
-  @override
-  void initState() {
-    getData();
-    super.initState();
-  }
-
-  getData() async {
-    await ReadData();
-  }
+  
 
   late final String titleMenu;
   late final GestureTapCallback onTap;

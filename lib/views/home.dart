@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+
 class HomePage extends StatefulWidget {
   final String title;
   const HomePage({super.key, required this.title});
@@ -8,6 +11,32 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  final List _listdata = [];
+  // =============Read Data==============
+  Future<void> ReadData() async {
+    const url = "http://192.168.1.119/crud-api/controllers/readData.php";
+    final res = await http.get(Uri.parse(url));
+    if (res.statusCode == 200) {
+      // debugPrint(res.body);
+      final read = jsonDecode(res.body);
+
+      setState(() {
+        _listdata.addAll(read);
+        debugPrint(_listdata.toString());
+      });
+    }
+  }
+
+  @override
+  void initState() {
+    getData();
+    super.initState();
+  }
+
+  getData() async {
+    await ReadData();
+  }
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
