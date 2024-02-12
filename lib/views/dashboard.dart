@@ -23,19 +23,22 @@ class _DashboardPageState extends State<DashboardPage> {
     if (res.statusCode == 200) {
       // debugPrint(res.body);
       final read = jsonDecode(res.body);
-      
+
       setState(() {
         _listdata.add(read);
         debugPrint(_listdata.toString());
       });
-
     }
   }
 
   @override
   void initState() {
-    ReadData();
+    getData();
     super.initState();
+  }
+
+  getData() async {
+    await ReadData();
   }
 
   late final String titleMenu;
