@@ -46,7 +46,7 @@ class _HomePageState extends State<HomePage> {
         backgroundColor: Colors.purple,
         title: Text(widget.title),
       ),
-      body:_isLoading ? const CircularProgressIndicator(): ListView.builder(
+      body:_isLoading ? const Center(child: CircularProgressIndicator()): ListView.builder(
         itemCount: _listdata.length,
         itemBuilder: (context, index) {
           return Card(
@@ -57,7 +57,7 @@ class _HomePageState extends State<HomePage> {
               leading: CircleAvatar(
                 radius: 20.0,
                 child:
-                    Text(_listdata[index]['username'].toString().toUpperCase()),
+                    Text(_listdata[index]['username'].toString().substring(0,2).toUpperCase()),
               ),
               trailing: Container(
                 width: 150.0,
