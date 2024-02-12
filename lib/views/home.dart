@@ -45,16 +45,16 @@ class _HomePageState extends State<HomePage> {
         title: Text(widget.title),
       ),
       body: ListView.builder(
-        itemCount: 5,
+        itemCount: _listdata.length,
         itemBuilder: (context, index) {
           return Card(
             // color: Colors.orange,
             child: ListTile(
-              title: Text("Username:$index"),
-              subtitle: Text("Mark Zuckerberg:$index"),
+              title: Text(_listdata[index]['username']),
+              subtitle: Text(_listdata[index]['name']),
               leading: CircleAvatar(
                 radius: 20.0,
-                child: Text(("An").toString().toUpperCase()),
+                child: Text(_listdata[index]['username'].toString().toUpperCase()),
               ),
               trailing: Container(
                 width: 150.0,
