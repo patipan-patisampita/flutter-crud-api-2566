@@ -12,6 +12,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final List _listdata = [];
+  bool _isLoading = true;
   // =============Read Data==============
   Future<void> ReadData() async {
     const url = "http://192.168.1.119/crud-api/controllers/readData.php";
@@ -22,7 +23,8 @@ class _HomePageState extends State<HomePage> {
 
       setState(() {
         _listdata.addAll(read);
-        debugPrint(_listdata.toString());
+        _isLoading = false;
+         debugPrint('$_listdata');
       });
     }
   }
@@ -36,7 +38,7 @@ class _HomePageState extends State<HomePage> {
   getData() async {
     await ReadData();
   }
-  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -54,7 +56,8 @@ class _HomePageState extends State<HomePage> {
               subtitle: Text(_listdata[index]['name']),
               leading: CircleAvatar(
                 radius: 20.0,
-                child: Text(_listdata[index]['username'].toString().toUpperCase()),
+                child:
+                    Text(_listdata[index]['username'].toString().toUpperCase()),
               ),
               trailing: Container(
                 width: 150.0,
@@ -65,13 +68,14 @@ class _HomePageState extends State<HomePage> {
                       onPressed: () {},
                       icon: const Icon(Icons.edit, color: Colors.teal),
                     ),
-                     IconButton(
+                    IconButton(
                       onPressed: () {},
                       icon: const Icon(Icons.delete, color: Colors.red),
                     ),
-                     IconButton(
+                    IconButton(
                       onPressed: () {},
-                      icon: const Icon(Icons.list_alt_outlined, color: Colors.blueAccent),
+                      icon: const Icon(Icons.list_alt_outlined,
+                          color: Colors.blueAccent),
                     ),
                   ],
                 ),
